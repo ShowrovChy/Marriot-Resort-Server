@@ -37,6 +37,16 @@ async function run() {
       res.json(resorts);
     });
 
+    // DELETE API delete resort
+
+    app.delete("/deleteResort/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await resortCollection.deleteOne(query);
+
+      res.json(result);
+    });
+
     // POST API  add   resort booking
 
     app.post("/addBooking", async (req, res) => {
