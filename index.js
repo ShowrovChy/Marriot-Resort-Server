@@ -81,6 +81,19 @@ async function run() {
       const result = await bookedResortsCollection.find(query).toArray();
       res.json(result);
     });
+
+    //UPDATE API Approve Booking
+    app.put("/approveBooking/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const Booking = {
+        $set: {
+          status: "Approved",
+        },
+      };
+      const result = await bookedResortsCollection.updateOne(query, Booking);
+      res.json(result);
+    });
   } finally {
     // await client.close();
   }
