@@ -71,28 +71,6 @@ async function run() {
       const result = await bookedResortsCollection.find(query).toArray();
       res.json(result);
     });
-
-    // GET API get single event
-    /*    app.get("/singleEvents/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: ObjectId(id) };
-      const options = {
-        projection: { _id: 0 },
-      };
-      const result = await eventCollection.findOne(query, options);
-      res.json(result);
-    }); */
-
-    // POST API  get Booked Resorts
-
-    /*    app.post("/joinedEvents/:id", async (req, res) => {
-      const addedEvent = req.body;
-      console.log(addedEvent);
-      const joinedEvent = await joinedEventsCollection.insertOne(addedEvent);
-      res.json(joinedEvent);
-    }); */
-
-    // Delete API delete event
   } finally {
     // await client.close();
   }
