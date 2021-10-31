@@ -17,7 +17,6 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    console.log("working");
     await client.connect();
     const database = client.db("disneyResorts");
     const resortCollection = database.collection("resorts");
@@ -51,7 +50,6 @@ async function run() {
 
     app.post("/addBooking", async (req, res) => {
       const booking = req.body;
-      console.log("booling part ", booking);
       const result = await bookedResortsCollection.insertOne(booking);
 
       res.json(result);
@@ -76,9 +74,7 @@ async function run() {
     // GET API get only my booking  result
     app.get("/myBookings/:email", async (req, res) => {
       const email = req.params.email;
-      // console.log(email);
       const query = { email: email };
-      console.log(query);
       const result = await bookedResortsCollection.find(query).toArray();
       res.json(result);
     });
@@ -86,7 +82,6 @@ async function run() {
     //UPDATE API Approve Booking
     app.put("/approveBooking/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
       const query = { _id: ObjectId(id) };
       const Booking = {
         $set: {
@@ -94,7 +89,6 @@ async function run() {
         },
       };
       const result = await bookedResortsCollection.updateOne(query, Booking);
-      console.log("result part", result);
       res.json(result);
     });
   } finally {
